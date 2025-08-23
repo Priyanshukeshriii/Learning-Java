@@ -10,7 +10,7 @@ public class StringInJava {
         //substring
         System.out.println(a1.substring(0,1));
         System.out.println(a1.substring(1));
-        //subsequence use to make a char array
+        //subsequence use to make a char sequence
         System.out.println("Sub string: "+a1.subSequence(0,1));
         //compareTo return 0 if string is same and 1 if not same
         System.out.println("compare to :"+a1.compareTo("ja"));
