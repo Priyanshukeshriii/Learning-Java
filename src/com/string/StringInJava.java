@@ -26,7 +26,25 @@ public class StringInJava {
         System.out.println(ch);
         //important concept
         String s1 = "kk";
-        s1.concat(a1);
+        String s5 = s1.concat(a1);
+
         System.out.println(s1);
+        System.out.println(s5);
+
+
+
+        //intern() method
+        String str = new String("priyanshu");
+        String str2 = "priyanshu";
+        String str1 = str.intern();
+        System.out.println(str == str1);
+        System.out.println(str1 == str2);
+        System.out.println(str);
+
+
+        //
+        System.out.println("codePointAt: "+str.codePointAt(1));
+        System.out.println("codePointBefore: "+str.codePointBefore(1));
+
     }
 }
