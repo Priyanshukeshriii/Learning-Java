@@ -13,6 +13,8 @@ class A{
 
 public class SIBManager {
     static {
+//        static block runs only ones the class is called it is different form static method
+//        it runs before the main method
         System.out.println("static Block");//we can use multi static block and calling will be top to bottom
     }
     static {

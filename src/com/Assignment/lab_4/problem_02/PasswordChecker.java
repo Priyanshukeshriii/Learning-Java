@@ -12,6 +12,7 @@ package com.Assignment.lab_4.problem_02;
 //Aasdfasd12: not acceptable, as have uppercase character
 
 
+import java.util.Scanner;
 
 public class PasswordChecker {
     static boolean containsLowerCase(String password){
@@ -38,7 +39,19 @@ public class PasswordChecker {
         }
         return true;
     }
-    public static void main(String[] args) {
+//    static boolean containsPatterns(String password){
+//        if(password.c)
+//        return true;
+//    }
 
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Enter the password: ");
+        String password = input.next();
+        if(containsLowerCase(password) && containsUpperCase(password) && containsDigit(password)){
+            System.out.println("correct password");
+        }else {
+            System.out.println("Wrong password");
+        }
     }
 }

@@ -1,8 +1,11 @@
 class B {
     static {// static block can be called without an object
+        //before the constructor static block is called
+        //this does not run every time the object is created
         System.out.println("this is the SIB block");
     }
     {
+        //this IIB block runs every time the object is created
         System.out.println("1st IIB block");// IIB block can not called without the object
     }
     {

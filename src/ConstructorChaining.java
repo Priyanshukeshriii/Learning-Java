@@ -5,8 +5,9 @@ class A1{
     }
 
 }
-class B1{
+class B1 extends A1{
     B1() {
+        super();//super call this call the constructor of A1
         System.out.println("B constructor");
     }
 }
