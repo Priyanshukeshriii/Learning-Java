@@ -12,8 +12,8 @@ class Method{
 }
 class Register extends Method{
     @Override
-    void show() {
-        super.show();
+    void show() {//this is the run time polymorphism here we are overriding the method is already persent in parent class
+        System.out.println("register show() method" );
     }
     void show(int i , int j){
         System.out.println("regester " +(i+j));
@@ -25,6 +25,9 @@ public class MethodOverloading {
         m.show();
         m.show(10);
         m.show(10.31);
+        Register r1 = new Register();
+        r1.show(21,7);
+        r1.show();
 
     }
 }

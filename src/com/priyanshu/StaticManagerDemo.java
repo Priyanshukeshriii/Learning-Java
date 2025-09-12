@@ -5,6 +5,7 @@ class c {
     }
 }
 class b extends c{
+    //when we extend a class we can use the child class name to call the static method or variable
     static void display(){
         System.out.println(" display b");
     }
