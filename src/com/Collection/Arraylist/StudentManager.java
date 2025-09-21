@@ -3,6 +3,7 @@ package com.Collection.Arraylist;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
 
 class Student{
     int age ;
@@ -44,5 +45,11 @@ public class StudentManager {
         System.out.println(studentArrayList);
         String s1 = "irhg";
         System.out.println(s1.indexOf("i"));
+        HashSet<Student> studentset = new HashSet<>();
+        Student[] studentArrya = new Student[10];
+        studentset.toArray(studentArrya);
+        for(Student std : studentArrya){
+            System.out.println(std);
+        }
     }
 }
