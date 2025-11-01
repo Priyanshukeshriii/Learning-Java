@@ -1,5 +1,6 @@
 package finalMiniProject.dao;
 
+import finalMiniProject.data.Course;
 import finalMiniProject.data.RegisterCourse;
 import java.sql.*;
 import java.util.ArrayList;
@@ -52,6 +53,24 @@ public class RegisterCourseDAO {
         int rows = ps.executeUpdate();
         DataBase.closeConnection(con);
         return rows > 0;
+    }
+    public static void update_grade(String roll_number , String grade , String course_code) throws SQLException, ClassNotFoundException {
+        String sql3 = "UPDATE registerCourse SET grade = ? WHERE student_id = ? AND course_id = ?";
+        ;
+        String sql = "select * from courses where course_code = ?";
+        String sql1 = "select * from students where roll_number = ?";
+        Connection con = DataBase.getConnection();
+        PreparedStatement ps = con.prepareStatement(sql);
+        PreparedStatement ps1  = con.prepareStatement(sql1);
+        PreparedStatement ps2  = con.prepareStatement(sql3);
+        ps.setString(1,course_code);
+        ps1.setString(1,roll_number);
+        ResultSet rs  = ps.executeQuery();
+        ResultSet rs1 = ps1.executeQuery();
+        ps2.setString(1,grade);
+        ps2.setInt(2, rs1.getInt("student_id"));
+        ps2.setInt(3,rs.getInt("course_id"));
+        ps2.executeUpdate();
     }
 
 

@@ -1,10 +1,7 @@
 package finalMiniProject.Users;
 
 import finalMiniProject.RoleMenu;
-import finalMiniProject.dao.CourseDAO;
-import finalMiniProject.dao.DataBase;
-import finalMiniProject.dao.ProfessorDAO;
-import finalMiniProject.dao.StudentDAO;
+import finalMiniProject.dao.*;
 import finalMiniProject.data.Course;
 import finalMiniProject.services.UserServices;
 
@@ -93,61 +90,65 @@ public class Professor extends UserServices implements User , RoleMenu {
     }
 
     void update_course(String course_code) throws SQLException, ClassNotFoundException {
-            Course course = CourseDAO.get_Course(course_code);
-            Scanner input = new Scanner(System.in);
-            System.out.println("Enter which field you want to update:");
-            System.out.println("(courseCode / courseTitle / credits / prerequisites / hours / professorId / semester)");
-            String field = input.next();
+        Course course = CourseDAO.get_Course(course_code);
+        Scanner input = new Scanner(System.in);
+        System.out.println("Enter which field you want to update:");
+        System.out.println("(courseCode / courseTitle / credits / prerequisites / hours / professorId / semester)");
+        String field = input.next();
 
-            switch (field.toLowerCase()) {
-                case "coursecode":
-                    System.out.print("Enter new course code: ");
-                    course.setCourseCode(input.next());
-                    break;
+        switch (field.toLowerCase()) {
+            case "coursecode":
+                System.out.print("Enter new course code: ");
+                course.setCourseCode(input.next());
+                break;
 
-                case "coursetitle":
-                    System.out.print("Enter new course title: ");
-                    input.nextLine(); // consume leftover newline
-                    course.setCourseTitle(input.nextLine());
-                    break;
+            case "coursetitle":
+                System.out.print("Enter new course title: ");
+                input.nextLine(); // consume leftover newline
+                course.setCourseTitle(input.nextLine());
+                break;
 
-                case "credits":
-                    System.out.print("Enter new credits: ");
-                    course.setCredits(input.nextInt());
-                    break;
+            case "credits":
+                System.out.print("Enter new credits: ");
+                course.setCredits(input.nextInt());
+                break;
 
-                case "prerequisites":
-                    System.out.print("Enter new prerequisites: ");
-                    input.nextLine(); // consume leftover newline
-                    course.setPrerequisites(input.nextLine());
-                    break;
+            case "prerequisites":
+                System.out.print("Enter new prerequisites: ");
+                input.nextLine(); // consume leftover newline
+                course.setPrerequisites(input.nextLine());
+                break;
 
-                case "hours":
-                    System.out.print("Enter new hours: ");
-                    course.setHours(input.nextInt());
-                    break;
+            case "hours":
+                System.out.print("Enter new hours: ");
+                course.setHours(input.nextInt());
+                break;
 
-                case "professorid":
-                    System.out.print("Enter new professor ID: ");
-                    course.setProfessorId(input.nextInt());
-                    break;
+            case "professorid":
+                System.out.print("Enter new professor ID: ");
+                course.setProfessorId(input.nextInt());
+                break;
 
-                case "semester":
-                    System.out.print("Enter new semester: ");
-                    course.setSemester(input.nextInt());
-                    break;
+            case "semester":
+                System.out.print("Enter new semester: ");
+                course.setSemester(input.nextInt());
+                break;
 
-                default:
-                    System.out.println("Invalid field name!");
-
-            }
-            boolean r = CourseDAO.update_Course(course);
-            if(r == false){
-                System.out.println("Something went wrong!");
-            }
-
+            default:
+                System.out.println("Invalid field name!");
 
         }
+        boolean r = CourseDAO.update_Course(course);
+        if (r == false) {
+            System.out.println("Something went wrong!");
+        }
+
+
+    }
+
+    void updateGrade(String Student_roll , String course_code,String grade) throws SQLException, ClassNotFoundException {
+        RegisterCourseDAO.update_grade(Student_roll,grade,course_code);
+    }
 
 
 
