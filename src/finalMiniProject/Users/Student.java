@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Student extends UserServices implements RoleMenu ,User{
@@ -150,7 +151,7 @@ public class Student extends UserServices implements RoleMenu ,User{
         ResultSet rs  = ps.executeQuery();
         ResultSet rs1 = ps1.executeQuery();
         if(rs != null &&  rs.getInt("semester") == semester){
-            RegisterCourse registerCourse = new RegisterCourse(rs1.getInt("student_id"), rs.getInt("course_id"),semester,null);
+            RegisterCourse registerCourse = new RegisterCourse(-1,rs1.getInt("student_id"), rs.getInt("course_id"),semester,null);
             boolean result = RegisterCourseDAO.add(registerCourse);
             if(result == false){
                 System.out.println("Something went wrong!");
@@ -196,6 +197,32 @@ public class Student extends UserServices implements RoleMenu ,User{
     }
     void viewCourse() throws SQLException, ClassNotFoundException {
         List<Course> courses = CourseDAO.getAll_Courses_By_Semester(this.currentSemester);
+    }
+    void viewGrades(String course_code) throws SQLException, ClassNotFoundException {
+        String sql = "select * from students where roll_number = ?";
+        String sql1 = "select * from courses where course_code = ?";
+        Connection con  = DataBase.getConnection();
+        PreparedStatement ps = con.prepareStatement(sql);
+        PreparedStatement ps1 = con.prepareStatement(sql1);
+        ps.setString(1,this.rollNumber);
+        ps1.setString(1,course_code);
+        ResultSet rs = ps.executeQuery();
+        ResultSet rs1 = ps1.executeQuery();
+        String sql2 = "select * form registercourse where student_id = ? and course_id = ?";
+        PreparedStatement ps2 = con.prepareStatement(sql2);
+        ps2.setInt(1, rs.getInt("student_id"));
+        ps2.setInt(2,rs1.getInt("course_id"));
+        ResultSet rs2 =ps2.executeQuery();
+        List<RegisterCourse> list = new ArrayList<>();
+        while (rs2.next()) {
+            int studentId = rs2.getInt("student_id");
+            int enrollmentId = rs2.getInt("enrollment_id");
+            int courseId = rs2.getInt("course_id");
+            int semester = rs2.getInt("semester");
+            String grade = rs2.getString("grade");
+            list.add(new RegisterCourse(enrollmentId, studentId, courseId, semester, grade));
+        }
+        System.out.println(list);
     }
 
 }

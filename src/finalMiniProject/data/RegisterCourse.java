@@ -20,7 +20,8 @@ public class RegisterCourse {
         return sb.toString();
     }
 
-    public RegisterCourse(int studentId, int courseId, int semester, String grade) {
+    public RegisterCourse(int enrollmentId,int studentId, int courseId, int semester, String grade) {
+        this.enrollmentId = enrollmentId;
         this.studentId = studentId;
         this.courseId = courseId;
         this.semester = semester;
