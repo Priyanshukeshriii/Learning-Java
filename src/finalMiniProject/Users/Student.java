@@ -5,7 +5,6 @@ import finalMiniProject.dao.*;
 import finalMiniProject.data.Complaint;
 import finalMiniProject.data.Course;
 import finalMiniProject.data.RegisterCourse;
-import finalMiniProject.services.StudentServices;
 import finalMiniProject.services.UserServices;
 
 import java.sql.Connection;
@@ -112,7 +111,7 @@ public class Student extends UserServices implements RoleMenu ,User{
     }
 
     @Override
-    public void login(String email, String password) {
+    public Admin login(String email, String password) {
         String sql = "select * from students where email = ? and password = ?";
         try {
             Connection con = DataBase.getConnection();
@@ -130,6 +129,7 @@ public class Student extends UserServices implements RoleMenu ,User{
             throw new RuntimeException(e);
         }
 
+        return null;
     }
 
     @Override

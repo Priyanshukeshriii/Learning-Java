@@ -60,7 +60,7 @@ public class Professor extends UserServices implements User , RoleMenu {
     }
 
     @Override
-    public void login(String email, String password) throws ClassNotFoundException, SQLException {
+    public Admin login(String email, String password) throws ClassNotFoundException, SQLException {
 
         String sql = "select * from professors where email = ? and password = ?";
 
@@ -76,6 +76,7 @@ public class Professor extends UserServices implements User , RoleMenu {
         }
 
 
+        return null;
     }
 
     @Override
