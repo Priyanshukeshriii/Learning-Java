@@ -13,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Scanner;
 
 public class Professor extends UserServices implements User , RoleMenu {
     Professor professor = null;
@@ -90,6 +91,66 @@ public class Professor extends UserServices implements User , RoleMenu {
     void viewCourse(int semester) throws SQLException, ClassNotFoundException {
         List<Course> courses = CourseDAO.getAll_Courses_By_Semester(semester);
     }
+
+    void update_course(String course_code) throws SQLException, ClassNotFoundException {
+            Course course = CourseDAO.get_Course(course_code);
+            Scanner input = new Scanner(System.in);
+            System.out.println("Enter which field you want to update:");
+            System.out.println("(courseCode / courseTitle / credits / prerequisites / hours / professorId / semester)");
+            String field = input.next();
+
+            switch (field.toLowerCase()) {
+                case "coursecode":
+                    System.out.print("Enter new course code: ");
+                    course.setCourseCode(input.next());
+                    break;
+
+                case "coursetitle":
+                    System.out.print("Enter new course title: ");
+                    input.nextLine(); // consume leftover newline
+                    course.setCourseTitle(input.nextLine());
+                    break;
+
+                case "credits":
+                    System.out.print("Enter new credits: ");
+                    course.setCredits(input.nextInt());
+                    break;
+
+                case "prerequisites":
+                    System.out.print("Enter new prerequisites: ");
+                    input.nextLine(); // consume leftover newline
+                    course.setPrerequisites(input.nextLine());
+                    break;
+
+                case "hours":
+                    System.out.print("Enter new hours: ");
+                    course.setHours(input.nextInt());
+                    break;
+
+                case "professorid":
+                    System.out.print("Enter new professor ID: ");
+                    course.setProfessorId(input.nextInt());
+                    break;
+
+                case "semester":
+                    System.out.print("Enter new semester: ");
+                    course.setSemester(input.nextInt());
+                    break;
+
+                default:
+                    System.out.println("Invalid field name!");
+
+            }
+            boolean r = CourseDAO.update_Course(course);
+            if(r == false){
+                System.out.println("Something went wrong!");
+            }
+
+
+        }
+
+
+
 }
 
 

@@ -29,11 +29,11 @@ public class CourseDAO {
     }
 
 
-    public static Course get_Course_By_Id(int courseId) throws SQLException, ClassNotFoundException {
+    public static Course get_Course(String course_code) throws SQLException, ClassNotFoundException {
         String sql = "SELECT * FROM courses WHERE course_id = ?";
         Connection con = DataBase.getConnection();
         PreparedStatement ps = con.prepareStatement(sql);
-        ps.setInt(1, courseId);
+        ps.setString(1, course_code);
         ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {

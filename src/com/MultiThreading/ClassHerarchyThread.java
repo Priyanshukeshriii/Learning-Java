@@ -4,13 +4,18 @@ package com.MultiThreading;
 
 class ClassHerarchyThread {
     static class  shared{
-        public synchronized void test(){
+        public synchronized void test() throws InterruptedException {
             for (int i = 0; i < 100; i++) {
                 System.out.println(Thread.currentThread().getName() + ": " + i);
-                if (i == 50){
+                Thread.currentThread().sleep(100);
+                if (i == 50 && Thread.currentThread().getName().equalsIgnoreCase("thread-0")) {
                     Thread.currentThread().stop();
                 }
+                test1();
             }
+        }
+        void test1(){
+
         }
     }
     static class Thread1 extends Thread{
@@ -20,7 +25,11 @@ class ClassHerarchyThread {
         }
         @Override
         public void run() {
-            s.test();
+            try {
+                s.test();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 
@@ -31,7 +40,11 @@ class ClassHerarchyThread {
         }
         @Override
         public void run() {
-            s.test();
+            try {
+                s.test();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 
