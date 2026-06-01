@@ -111,7 +111,7 @@ public class Student extends UserServices implements RoleMenu ,User{
     }
 
     @Override
-    public Admin login(String email, String password) {
+    public Student login(String email, String password) {
         String sql = "select * from students where email = ? and password = ?";
         try {
             Connection con = DataBase.getConnection();
@@ -129,7 +129,7 @@ public class Student extends UserServices implements RoleMenu ,User{
             throw new RuntimeException(e);
         }
 
-        return null;
+        return student;
     }
 
     @Override

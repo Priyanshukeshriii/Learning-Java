@@ -10,6 +10,7 @@ import java.util.Scanner;
 import java.sql.SQLException;
 
 public class Admin implements User , RoleMenu {
+    Admin admin = null;
     @Override
     public void showMenu() {
 
@@ -17,13 +18,15 @@ public class Admin implements User , RoleMenu {
 
     @Override
     public Admin login(String email, String password) throws SQLException, ClassNotFoundException {
-
+        if(password == "admin@123"){
+            return new Admin();//yeha pa sara data load kr sakte tha
+        }
         return null;
     }
 
     @Override
     public void logout() {
-
+         admin = null;
     }
 
     void update_student(String roll_number) throws SQLException, ClassNotFoundException {
